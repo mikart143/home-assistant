@@ -9,7 +9,7 @@ logger:
 
 api:
   encryption:
-    key: $"{api_key}"
+    key: "${api_encryption_key}"
 
 ota:
   password: "${ota_password}"
