@@ -1,0 +1,60 @@
+substitutions:
+  device_serialnumber:
+  api_key:
+  ota_password:
+  wifi_ssid:
+  ap_password:
+
+esphome:
+  name: "sonoff-s26-${device_serialnumber}"
+
+esp8266:
+  board: esp01_1m
+  board_flash_mode: dout
+
+logger:
+
+api:
+  encryption:
+    key: $"{api_key}"
+
+ota:
+  password: "${ota_password}"
+
+wifi:
+  ssid: "${wifi_ssid}"
+  password: "${wifi_password}"
+
+  ap:
+    ssid: "Sonoff-S26-${device_serialnumber}"
+    password: "${ap_password}"
+
+captive_portal:
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: false
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "sonoff-s26-${device_serialnumber} Button"
+    on_press:
+      - switch.toggle: relay
+  - platform: status
+    name: "sonoff-s26-${device_serialnumber} Status"
+sensor:
+  - platform: wifi_signal
+    name: "sonoff-s26-${device_serialnumber} WiFi Signal"
+    update_interval: 60s
+switch:
+  - platform: gpio
+    name: "sonoff-s26-${device_serialnumber} Relay"
+    pin: GPIO12
+    id: "relay"
+  - platform: restart
+    name: "sonoff-s26-${device_serialnumber} Restart"
