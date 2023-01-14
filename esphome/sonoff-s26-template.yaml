@@ -1,10 +1,3 @@
-substitutions:
-  device_serialnumber:
-  api_key:
-  ota_password:
-  wifi_ssid:
-  ap_password:
-
 esphome:
   name: "sonoff-s26-${device_serialnumber}"
 
