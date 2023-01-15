@@ -6,6 +6,8 @@ esp8266:
   board_flash_mode: dout
 
 logger:
+web_server:
+captive_portal:
 
 api:
   encryption:
@@ -21,8 +23,6 @@ wifi:
   ap:
     ssid: "Sonoff-S26-${device_serialnumber}"
     password: "${ap_password}"
-
-captive_portal:
 
 status_led:
   pin:
